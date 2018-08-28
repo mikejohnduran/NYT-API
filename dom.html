@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<body>
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="ny.png" />
+        <title>NY Times API Project</title>
+        <link style='text-align-center'="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+        <link href="nystylesheet.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+
+        <!-- Logo -->
+        <div class="container" id="container">
+            <p style="text-align:center">
+                <img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_New_York_Times_logo.png/800px-The_New_York_Times_logo.png"
+                    vspace="50" </p>
+
+                <!-- Search box -->
+                <div class="sBox">
+                    <input type="text" placeholder="Search..">
+                </div>
+
+
+
+                <ul id="headlines">
+                </ul>
+                <!-- Scripts -->
+                <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+                    crossorigin="anonymous"></script>
+                <script>
+                    $("input").keypress(function (e) {
+                        if (e.which == 13) {
+                            var usrInput = $("input").val();
+                            nytUrl = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${usrInput}&sort=newest&api-key=4ad4139d77de47e4bda07bbd18bada82`
+                            $.getJSON(nytUrl, function (data) {
+                                console.log(data)
+                                data.response.docs.forEach(function (doc) {
+                                    document.getElementById("headlines").innerHTML += `<li> ${doc.headline.main} 
+                            <br>
+                            ${doc.snippet}
+                            
+                            <br>
+                            ${doc.byline.original}
+                            
+                            </li>`;
+
+                                })
+                            })
+                        }
+                    });
+                </script>
+    </body>
+
+    </html>

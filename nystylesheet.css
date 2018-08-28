@@ -1,0 +1,15 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 13px;
+}
+
+.logo {
+  margin-top: 40px;
+}
+
+.sBox {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
